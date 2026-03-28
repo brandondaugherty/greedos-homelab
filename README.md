@@ -1,5 +1,3 @@
-# homelab
-Self-hosted homelab running Dockerized services, media automation, networking, and remote access infrastructure
 # 🖥️ GreedOS Homelab
 
 A self-hosted homelab environment built to design, deploy, and manage real-world infrastructure using Linux, Docker, and networked storage.
