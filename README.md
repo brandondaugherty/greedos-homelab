@@ -121,7 +121,7 @@ All services are containerized using Docker Compose for portability and scalabil
 **Brandon Daugherty**
 IT Technician | Homelab Enthusiast
 
-* GitHub: https://github.com/signaturre
+* GitHub: https://github.com/brandondaugherty
 
 ---
 
