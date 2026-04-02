@@ -1,162 +1,191 @@
 # 🤖 AMP Discord Bot
 
-A lightweight Discord slash-command bot for managing **AMP-hosted game server instances** from Discord.
+A custom Discord operations bot for managing **AMP-hosted game server instances** through a secure, role-restricted chat interface.
 
-This project was built to give trusted users a simple way to start, stop, restart, and check the status of an AMP-managed server without logging directly into the host.
-
----
-
-## 🚀 Overview
-
-The bot runs locally on the same machine that hosts the AMP panel and manages one or more game server instances. It connects Discord interactions to local AMP-driven server-management actions and can also post status-change notifications automatically.
-
-### Core functions
-
-- Start an AMP-managed server from Discord
-- Stop an AMP-managed server from Discord
-- Restart an AMP-managed server from Discord
-- Check server status from Discord
-- Watch server state and post updates only when it changes
+This project demonstrates how Discord can be used as a lightweight operational layer for self-hosted infrastructure, allowing trusted users to perform controlled server actions and receive status updates without needing direct host or panel access.
 
 ---
 
-## ⚙️ How It Works
+## 📌 Project Summary
 
-The bot uses **Discord slash commands** as the user interface and performs local checks and actions against an AMP-managed environment.
+The AMP Discord Bot was designed to simplify administrative workflows for self-hosted game servers by connecting **Discord slash commands** to **local AMP instance management**.
 
-### Command interface
+Instead of logging into the host or AMP web interface for routine tasks, authorized users can manage server lifecycle actions directly from Discord. The bot also supports status monitoring and state-change notifications, making it useful as both a control surface and an operational awareness tool.
 
-The current implementation exposes Discord slash commands for instance control and status checks. While the first use case centered on a specific game server, the overall pattern is built around AMP as the control layer rather than any single title.
+From a resume and portfolio perspective, this project highlights experience in:
 
-### Local control path
-
-The bot is designed to run on the same host that can already manage AMP locally. It relies on:
-
-- **AMP** for instance management
-- **Local Docker/process checks** for secondary status validation
-- A local helper flow that:
-  - logs into AMP locally
-  - requests a remote-instance management token
-  - logs into the target managed instance through AMP's ADS flow
-  - performs start/stop/restart/status actions against the selected instance
-
-This keeps operational control local while exposing only a clean Discord interface to allowed users.
+- infrastructure automation
+- secure administrative tooling
+- API-driven service management
+- Discord bot development
+- Linux service deployment and supervision
+- operational access control for self-hosted systems
 
 ---
 
-## 🔐 Access Control
+## 🎯 Objectives
 
-The bot is intentionally restricted so not everyone in a Discord server can control infrastructure.
+This project was built to solve a practical homelab problem: reducing friction around day-to-day game server administration while keeping management actions secure and auditable.
 
-By default, command use is limited to the Discord user IDs listed in:
+### Goals
+
+- Provide a simple chat-based interface for server administration
+- Reduce the need for direct host or panel logins for routine tasks
+- Restrict administrative actions to trusted Discord users, roles, or channels
+- Surface server state changes in a low-noise, operationally useful way
+- Build a reusable control pattern that can extend beyond a single game server
+
+---
+
+## 🧱 Architecture Overview
+
+The bot runs locally on the same machine that can already manage AMP and the associated game server instances.
+
+### High-level flow
+
+1. A trusted user issues a Discord slash command
+2. The bot validates access permissions
+3. The bot authenticates against AMP locally
+4. The bot targets the appropriate managed instance
+5. The requested lifecycle action or status check is performed
+6. The result is returned to Discord
+
+This architecture keeps the control path local and minimizes unnecessary external exposure while still providing a convenient administrative interface.
+
+---
+
+## ⚙️ Key Capabilities
+
+### Discord-based server operations
+
+The bot exposes slash-command driven workflows for common instance-management tasks such as:
+
+- starting a server
+- stopping a server
+- restarting a server
+- checking current server status
+
+### AMP-centered control layer
+
+Rather than being tightly coupled to one game title, the project is framed around **AMP as the management platform**, which makes the approach more reusable and transferable.
+
+### Access control and operational safety
+
+Administrative actions can be restricted using configuration such as:
 
 - `ALLOWED_USER_IDS`
+- `ALLOWED_ROLE_IDS`
+- `ALLOWED_CHANNEL_IDS`
 
-Optional additional restrictions:
+This allows the bot to function as a controlled operational tool instead of an open server command interface.
 
-- `ALLOWED_ROLE_IDS` — allow listed Discord roles
-- `ALLOWED_CHANNEL_IDS` — restrict commands to specific channels
+### State-change notifications
 
-This makes it possible to keep administrative controls limited to trusted users or a dedicated operations channel.
+A built-in watcher can poll local state and send updates only when the instance status changes.
 
----
+This supports low-noise alerting patterns such as:
 
-## 📣 Built-in Watcher
+- server came online
+- server stopped
+- instance changed from idle to running
 
-The project includes a watcher that can periodically poll AMP and local service state, then post updates only when the state changes.
-
-Example watcher settings:
-
-- `NOTIFY_CHANNEL_ID`
-- `WATCHER_ENABLED=true`
-- `WATCH_INTERVAL_MS=60000`
-
-### Watcher behavior
-
-- Polls locally on a fixed interval
-- Uses AMP and local Docker/process checks
-- Posts only on state transitions
-- Avoids noisy repeat messages when nothing changes
-
-Example transitions:
-
-- `idle -> running`
-- `running -> idle`
-
-This makes it useful for lightweight operational awareness without turning Discord into a noisy log feed.
+By avoiding repetitive status spam, the bot stays useful in a real Discord environment.
 
 ---
 
-## 🧱 Host Requirements
+## 🔐 Security and Design Considerations
 
-The bot must run on the same machine that can directly manage AMP instances.
+A major design goal was balancing convenience with operational safety.
 
-Expected local environment:
+### Security-minded decisions
 
-- Docker access on the host when container-based checks are used
-- AMP panel reachable locally
-- One or more server instances configured in AMP
+- Runs locally on infrastructure that already has authority to manage AMP
+- Limits command access to explicitly allowed users, roles, or channels
+- Avoids exposing direct infrastructure access to casual users
+- Uses Discord as a thin control interface, not as the system of record
+- Supports a cleaner separation between user interaction and privileged local actions
 
-Typical AMP-related environment variables include:
-
-- `AMP_BASE_URL`
-- `AMP_USERNAME`
-- `AMP_PASSWORD`
-- `AMP_INSTANCE_ID`
-
-The original deployment targeted a specific game server instance, but the documentation now reflects the broader AMP-centered architecture and control pattern.
+This demonstrates practical thinking around least privilege, administrative boundaries, and safe automation patterns in self-hosted environments.
 
 ---
 
-## 🛠️ Deployment Notes
+## 🛠️ Deployment Approach
 
-Basic setup flow:
+The bot is intended for always-on operation in a Linux homelab environment.
 
-1. Copy `.env.example` to `.env`
-2. Add Discord bot credentials and AMP credentials
-3. Install dependencies with `npm install`
-4. Register slash commands with `npm run register`
-5. Start the bot with `npm start`
+### Deployment workflow
 
-The bot can also be run as a **systemd user service**, which makes it practical for always-on homelab operation.
+- configure environment variables for Discord and AMP access
+- install dependencies with Node.js/npm
+- register Discord slash commands
+- run the bot as a background service
 
-Example service workflow:
+### Service management
 
-1. Copy the provided service file into `~/.config/systemd/user/`
-2. Run `systemctl --user daemon-reload`
-3. Run `systemctl --user enable --now <service-name>`
-4. Monitor logs with `journalctl --user -u <service-name> -f`
+The project supports deployment as a **systemd user service**, which improves reliability and maintainability by enabling:
 
----
+- automatic service startup
+- centralized log inspection
+- predictable restart behavior
+- simpler long-running process management
 
-## 🧠 Why This Project Matters
-
-This project is a strong example of practical homelab automation because it connects several real-world concerns:
-
-- Discord bot development
-- Role-based operational access
-- AMP instance lifecycle management
-- Local service supervision
-- Systemd-based background operation
-- Low-noise operational notifications
-
-It reflects the kind of tooling that grows naturally in a self-hosted environment: small, focused automation that solves a real operational pain point.
+This is the kind of small but important operational detail that separates a quick script from a more production-minded internal tool.
 
 ---
 
-## 🔮 Future Improvements
+## 🧠 Technical Skills Demonstrated
 
-Potential next steps for the project:
+This project showcases practical experience across several areas relevant to IT, systems administration, and infrastructure roles:
 
-- Support multiple AMP-managed game servers through a shared command structure
-- Add richer status output such as player counts, uptime, and resource use
-- Add structured embeds for status and alerts
-- Add command and audit logging for admin actions
-- Add maintenance mode or confirmation flows for destructive actions
-- Add health checks and recovery handling for failed startups
+- **Discord API integration** for slash-command based workflows
+- **Node.js application development** for automation tooling
+- **AMP instance management** and panel-driven service orchestration
+- **Linux operations** including process/service management with systemd
+- **Access control design** for administrative tooling
+- **Operational monitoring patterns** using state-based notifications
+- **Homelab automation** focused on reducing repetitive infrastructure tasks
+
+---
+
+## 💼 Resume Value
+
+This project is especially useful as a portfolio/resume example because it demonstrates more than just “I made a bot.”
+
+It shows the ability to:
+
+- identify an operational pain point
+- design a practical internal tool to solve it
+- integrate multiple systems into one workflow
+- apply security restrictions to administrative actions
+- deploy and maintain the tool in a real self-hosted environment
+
+That combination maps well to roles involving:
+
+- IT support and systems administration
+- infrastructure operations
+- platform/tooling support
+- junior DevOps or automation work
+- technical operations in self-hosted or small-team environments
+
+---
+
+## 🔮 Future Expansion
+
+The design can be extended in several useful directions:
+
+- support for multiple AMP-managed game servers
+- richer status reporting such as uptime, player counts, or resource usage
+- structured Discord embeds for cleaner operational output
+- audit logging for administrative actions
+- confirmation or maintenance workflows for disruptive actions
+- automated recovery or health-check logic for failed starts
+
+These next steps would further strengthen the project as an example of operational tooling and service automation.
 
 ---
 
 ## 🔗 Repository Context
 
-This bot is part of the broader **GreedOS Homelab** ecosystem and documents a custom operational tool built around self-hosted infrastructure and Discord-based administration for AMP-managed services.
+This project is part of the broader **GreedOS Homelab** repository and represents a custom-built internal operations tool developed within a self-hosted infrastructure environment.
+
+It reflects a practical, real-world approach to improving infrastructure usability through automation, controlled access, and lightweight service management.

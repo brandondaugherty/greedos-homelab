@@ -113,7 +113,7 @@ All services are containerized using Docker Compose for portability and scalabil
 
 ## 🔗 Related Projects
 
-- [AMP Discord Bot](projects/amp-discord-bot.md) — Discord slash-command bot for managing AMP-hosted game server instances, with access controls and state-change notifications.
+- [AMP Discord Bot](projects/amp-discord-bot.md) — A custom Discord operations bot for managing AMP-hosted game server instances through secure, role-restricted commands and low-noise status notifications.
 
 ---
 
