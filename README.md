@@ -113,6 +113,7 @@ All services are containerized using Docker Compose for portability and scalabil
 
 ## 🔗 Related Projects
 
+- [Palworld Discord Bot](projects/palworld-discord-bot.md) — Discord slash-command bot for managing an AMP-hosted Palworld server, with access controls and state-change notifications.
 
 ---
 
