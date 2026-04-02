@@ -114,6 +114,7 @@ All services are containerized using Docker Compose for portability and scalabil
 ## 🔗 Related Projects
 
 - [AMP Discord Bot](projects/amp-discord-bot.md) — A custom Discord operations bot for managing AMP-hosted game server instances through secure, role-restricted commands and low-noise status notifications.
+- [Sentinel Ops Bot](projects/sentinel-ops-bot.md) — A custom Discord alerting bot for homelab monitoring, incident visibility, and low-noise operational notifications across system, network, container, and OpenClaw health signals.
 
 ---
 
