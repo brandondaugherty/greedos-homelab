@@ -130,7 +130,7 @@ The Sentinel Ops Bot is designed for always-on use in a Linux homelab environmen
 
 ### Deployment workflow
 
-- configure the bot token and Discord channel settings
+- configure bot authentication and Discord channel settings
 - generate or refresh system health snapshots through a collector pipeline
 - run the bot as a persistent process
 - schedule collector updates at a fixed interval

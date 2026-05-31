@@ -21,19 +21,19 @@ GreedOS is designed to reflect the kinds of responsibilities involved in real sy
 
 ### Compute
 
-- **Lenovo ThinkCentre M710q** running Ubuntu Server
-- **Raspberry Pi 5** supporting Home Assistant and smart home automation
+- dedicated Linux host running Ubuntu Server
+- Raspberry Pi 5 supporting Home Assistant and smart home automation
 
 ### Storage
 
-- **Synology DS923+** for centralized NAS storage, media, backups, and persistent data
-- network-mounted storage exposed to services through shared paths such as `/mnt/media`
+- centralized NAS storage for media, backups, and persistent application data
+- network-mounted shared storage presented to services as common host paths
 
 ### Networking and Access
 
-- **Netgear Nighthawk R8000**
-- **Cloudflare Tunnels** for controlled public access to selected services
-- **Tailscale VPN** for private remote administration and access
+- consumer router and segmented home network environment
+- secure tunnel-based access for selected public services
+- private VPN-based access for remote administration
 
 ## Core Technologies and Responsibilities
 
