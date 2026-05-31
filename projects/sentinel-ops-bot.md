@@ -162,7 +162,7 @@ This project showcases practical experience in areas that transfer well to IT, s
 
 ## 💼 Resume Value
 
-This project is strong resume material because it demonstrates more than “I made a monitoring bot.”
+This project is strong portfolio material because it demonstrates more than "I built a monitoring bot."
 
 It shows the ability to:
 
@@ -176,8 +176,8 @@ That maps well to roles involving:
 
 - IT operations
 - systems administration
-- junior DevOps or SRE-adjacent work
 - infrastructure support
+- junior DevOps or SRE-adjacent work
 - internal tooling and automation
 
 ---

@@ -2,7 +2,7 @@
 
 A custom Discord operations bot for managing **AMP-hosted game server instances** through a secure, role-restricted chat interface.
 
-This project demonstrates how Discord can be used as a lightweight operational layer for self-hosted infrastructure, allowing trusted users to perform controlled server actions and receive status updates without needing direct host or panel access.
+This project demonstrates how Discord can be used as a lightweight operational layer for self-hosted infrastructure, allowing trusted users to perform controlled server actions and receive status updates without requiring direct host or panel access.
 
 ---
 
@@ -149,7 +149,7 @@ This project showcases practical experience across several areas relevant to IT,
 
 ## 💼 Resume Value
 
-This project is especially useful as a portfolio/resume example because it demonstrates more than just “I made a bot.”
+This project is useful as a portfolio example because it demonstrates more than just "I built a bot."
 
 It shows the ability to:
 

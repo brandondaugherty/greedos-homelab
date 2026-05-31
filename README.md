@@ -2,7 +2,7 @@
 
 A self-hosted homelab built to develop hands-on experience in **Linux administration, infrastructure operations, networking, monitoring, storage, and service automation**.
 
-This repository documents the systems, tooling, and operational decisions behind my home infrastructure. My goal is to use it as both a working environment and a professional portfolio for **systems administration and infrastructure-focused roles**.
+This repository documents the systems, tooling, and operational decisions behind my home infrastructure. It is intended to function both as a working environment and as a portfolio repository for **systems administration and infrastructure-focused roles**.
 
 ## Professional Focus
 
@@ -74,7 +74,7 @@ This homelab reflects ongoing hands-on work with:
 
 ## Operational Projects in This Repository
 
-These project write-ups show the kind of tooling and operational thinking I’ve been building around the homelab.
+These project write-ups highlight the kind of tooling and operational thinking I’ve been building around the homelab.
 
 - [AMP Discord Bot](projects/amp-discord-bot.md)  
   Discord-based administrative tooling for AMP-hosted game server management, including role-restricted operations and low-noise status notifications.
@@ -161,4 +161,4 @@ GitHub: <https://github.com/brandondaugherty>
 
 ---
 
-If you are reviewing this repository professionally, the most relevant sections are the project pages and the operational themes above. They best reflect the sysadmin-oriented work this homelab is helping me build experience in.
+If you are reviewing this repository professionally, the most relevant sections are the project pages and the operational themes above. They best reflect the systems administration work this homelab is helping me build experience in.
